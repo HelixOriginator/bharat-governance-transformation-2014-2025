@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat: Governance Transformation 2014-2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #141420;
+            --bg-card: #1a1a2e;
+            --accent-primary: #ff6b35;
+            --accent-secondary: #f7931e;
+            --accent-tertiary: #00d4aa;
+            --text-primary: #e8e8f0;
+            --text-secondary: #a0a0b8;
+            --border-color: rgba(255, 107, 53, 0.2);
+            --gradient-1: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            --gradient-2: linear-gradient(135deg, #00d4aa 0%, #0099cc 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Animated background gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 212, 170, 0.06) 0%, transparent 50%);
+            animation: gradientShift 20s ease infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(50px, 50px) rotate(5deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .flag-accent {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease 0.3s backwards;
+        }
+
+        .flag-stripe {
+            width: 60px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .saffron { background: #ff6b35; }
+        .white { background: #e8e8f0; }
+        .green { background: #00d4aa; }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeIn 1.5s ease 0.5s backwards;
+        }
+
+        .year-range {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: var(--accent-tertiary);
+            letter-spacing: 0.1em;
+            animation: fadeIn 1.5s ease 0.7s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.2s; }
+        .stat-card:nth-child(2) { animation-delay: 0.4s; }
+        .stat-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .main-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease 0.8s backwards;
+        }
+
+        .main-content::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .highlights {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: rgba(255, 107, 53, 0.05);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateX(8px);
+        }
+
+        .highlight-icon {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .highlight-text {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Crimson Pro', serif;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--accent-tertiary);
+            border: 2px solid var(--accent-tertiary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-tertiary);
+            color: var(--bg-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+        }
+
+        .icon {
+            font-size: 1.3rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 5rem;
+            animation: fadeIn 2s ease 1s backwards;
+        }
+
+        .creator-info {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .creator-name {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .creator-title {
+            color: var(--accent-tertiary);
+            font-style: italic;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .github-link:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .main-content {
+                padding: 2rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Loading animation for download button */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .btn-primary:active {
+            animation: pulse 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="flag-accent">
+                <div class="flag-stripe saffron"></div>
+                <div class="flag-stripe white"></div>
+                <div class="flag-stripe green"></div>
+            </div>
+            <h1>Bharat: Governance Transformation</h1>
+            <div class="subtitle">
+                Strategic Analysis of India's Comprehensive Governance Evolution
+            </div>
+            <div class="year-range">2014 — 2025</div>
+        </header>
+
+        <div class="hero-grid">
+            <div class="stat-card">
+                <span class="stat-number">500+</span>
+                <div class="stat-label">Schemes Redesigned</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">₹2.73L Cr</span>
+                <div class="stat-label">Corruption Eliminated</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">1.39B</span>
+                <div class="stat-label">Aadhaar Enrollments</div>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <h2>A Civilizational State Reimagined</h2>
+            <p class="description">
+                This comprehensive policy briefing documents the most transformative governance reformation in democratic history. 
+                From Digital Public Infrastructure that serves 50+ nations to anti-corruption mechanisms that eliminated 10+ crore fake beneficiaries, 
+                witness how ancient wisdom meets cutting-edge systems.
+            </p>
+
+            <div class="highlights">
+                <div class="highlight-item">
+                    <span class="highlight-icon">🏛️</span>
+                    <div class="highlight-text">
+                        <strong>Constitutional Foundations:</strong> World's longest written constitution adapted for 21st-century governance
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-icon">💻</span>
+                    <div class="highlight-text">
+                        <strong>Digital Public Infrastructure:</strong> India Stack (Aadhaar, UPI, DBT) - the world's most comprehensive DPI system
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-icon">📊</span>
+                    <div class="highlight-text">
+                        <strong>Economic Transformation:</strong> GDP growth from $1.86T to $3.94T, rising to 5th largest global economy
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-icon">🎯</span>
+                    <div class="highlight-text">
+                        <strong>Mission-Mode Execution:</strong> PRAGATI system enabling PM-level oversight of 340+ infrastructure projects
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-icon">🌐</span>
+                    <div class="highlight-text">
+                        <strong>Global Knowledge Leadership:</strong> From developing nation to civilizational-state governance paradigm
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <div class="btn-group">
+                    <a href="bharat-governance-transformation-2014-2025.pptx" download class="btn btn-primary">
+                        <span class="icon">⬇</span>
+                        <span>Download Presentation</span>
+                    </a>
+                    <a href="https://bharat-governance.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        <span class="icon">🌐</span>
+                        <span>Explore Interactive Version</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="creator-info">
+                Created by <span class="creator-name">Kallol Chakrabarti</span><br>
+                <span class="creator-title">Global Independent Researcher</span>
+            </div>
+            <a href="https://github.com/HelixOriginator/bharat-governance-transformation-2014-2025" class="github-link" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+                View on GitHub
+            </a>
+        </footer>
+    </div>
+</body>
+</html>
